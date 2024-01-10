@@ -1,0 +1,20 @@
+<launch>
+
+    <!-- Настройка топиков -->
+    <arg name="camera_ns" default="/realsense_gripper/aligned_depth_to_color/" />
+    <arg name="depth_topic" default="image_raw" />
+    <arg name="depth_info_topic" default="camera_info" />
+    <arg name="pcd_topic" default="points" />
+
+    <!-- Nodes -->
+    <group ns="$(arg camera_ns)">
+        <remap from="/depth/image" to="$(arg depth_topic)" />
+        <remap from="/depth/info" to="$(arg depth_info_topic)" />
+        <remap from="/depth/points" to="$(arg pcd_topic)" />
+
+        <node pkg="depth_pcd" type="depth_pcd.py" name="depth_pcd_node" output="screen" />
+    </group>
+
+
+
+</launch>
