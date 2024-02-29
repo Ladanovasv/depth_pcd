@@ -97,6 +97,7 @@ class DepthPointcloudNode:
         )
 
         point_cloud_ros_tf = do_transform_cloud(pcd_pc2, transform)
+        point_cloud_ros_tf.header = depth_msg.header
         self.pc_pub.publish(point_cloud_ros_tf)
 
 def main(args=None):
